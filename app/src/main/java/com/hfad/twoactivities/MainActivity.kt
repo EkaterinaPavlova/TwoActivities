@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.view.isVisible
 import com.hfad.twoactivities.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +22,14 @@ class MainActivity : AppCompatActivity() {
         Log.d(LOG_TAG, "onCreate")
 
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        if(binding.textHeaderReply.visibility == View.VISIBLE){
+            outState.putBoolean("reply_visible", true)
+            outState.putString("reply_text", binding.textMessageReply.text.toString())
+        }
     }
 
     fun launchSecondActivity(view: android.view.View) {
