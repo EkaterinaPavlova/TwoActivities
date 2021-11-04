@@ -1,13 +1,10 @@
 package com.hfad.twoactivities
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.core.view.isVisible
-import androidx.transition.Visibility
 import com.hfad.twoactivities.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +16,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        Log.d(LOG_TAG, "-------")
+        Log.d(LOG_TAG, "onCreate")
 
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
     }
@@ -49,6 +49,28 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_MESSAGE = "extra_message"
         const val TEXT_REQUEST = 1
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(LOG_TAG, "onStart")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(LOG_TAG, "onPause")
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(LOG_TAG, "onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(LOG_TAG, "onDestroy")
 
     }
 
